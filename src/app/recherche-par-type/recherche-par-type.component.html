@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <label ><i> Types</i> </label>
+        <select class="form-control form-control-lg" id="idType" name="idType"
+        [(ngModel)]="IdType" (change)="onChange()">
+        <option value="0">Tous</option>
+        <option *ngFor="let type of types" value="{{type.idType}}">{{type.nomType}}</option>
+        </select>
+        </div>
+
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+        <thead class="table-dark">
+    <tr> <th class="lead">ID Album</th><th class="lead">Nom Album</th>  <th class="lead">Date Diffusion</th> <th class="lead">Langue</th><th class="lead">Type</th><th  class="lead">Supprimer</th><th  class="lead">Modifier</th></tr>
+</thead>
+    <tbody *ngFor="let Album of Albums">
+        <tr >
+            <td>{{Album.idAlbum}}</td>
+            <td>{{Album.nomAlbum}}</td>
+            <td>{{Album.dateCreation | date:'dd/MM/yyyy'}}</td>
+            <td>{{Album.langue}}</td>
+            <td>{{Album.type.nomType}}</td>
+            <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerAlbum(Album)">Supprimer</a></td>
+            <td><a *ngIf="authService.isAdmin()" class="btn btn-primary" [routerLink]="['/updateAlbum',Album.idAlbum]">Modifier</a></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+            
+   
+

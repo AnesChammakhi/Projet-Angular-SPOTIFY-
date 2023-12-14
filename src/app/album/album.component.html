@@ -1,0 +1,37 @@
+
+<dd   class="col-sm-9" class="lead"><mark>Liste de Mes Albums préferées</mark></dd>
+
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table  class="table table-striped" width = "100%">
+    <thead class="table-dark" width = "100%">
+    <tr> <th class="lead">ID Album</th>
+        <th class="lead">Nom</th>
+        <th class="lead">Artist</th>
+        <th class="lead">Date Diffusion</th>
+        <th class="lead">Langue</th>
+        <th class="lead">Type  </th>
+        <th *ngIf="authService.isAdmin()" class="lead">Supprimer</th>
+        <th *ngIf="authService.isAdmin()"class="lead"> Modifier</th>
+        
+    </tr>
+</thead>
+    <tbody class="table-light" *ngFor="let Album of Albums">
+        <tr >
+            <td>{{Album.idAlbum}}</td>
+            <td>{{Album.nomAlbum}}</td>
+            <td>{{Album.artist}}</td>
+            <td>{{Album.dateCreation | date:'dd/MM/yyyy'}}</td>
+            <td>{{Album.langue}}</td>
+            <td>{{Album.type.nomType}}</td>
+            <td class="lead"> <a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerAlbum(Album)">Supprimer</a></td>
+            <td class="lead"><a *ngIf="authService.isAdmin()" class="btn btn-primary" [routerLink]="['/updateAlbum',Album.idAlbum]">Modifier</a></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+            
+   
